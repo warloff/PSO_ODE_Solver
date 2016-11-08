@@ -120,7 +120,9 @@ myRMSE = [];
         
     end
     
-%end
+myRMSE = myRMSE';
+
+localRMSE = [parray myRMSE];
 
 %spmd, p=profile('info');profile('off'); end
 

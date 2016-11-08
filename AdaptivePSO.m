@@ -14,44 +14,44 @@ function [ OUT,gbesttrace,pbestrace ] = AdaptivePSO()
 % 
 %% Define variables and Obtain experimental Data
 % % Define the bounds on the parameters
-Bounds = [1e2 1e7; 0.1 100; 1e2 1e7; 0.1 100; 1e2 1e7 ; 0.1 100];
+% Bounds = [1e2 1e7; 0.1 100; 1e2 1e7; 0.1 100; 1e2 1e7 ; 0.1 100];
+% % 
+% % % Variables for first pso run
+% Pdef = [500 100000 250 2 1 0.95 0.3 90000 3e-3 2000 0.003 0 0];
+% % 
+% % % variables for second pso run
+% Pdef2 = [500 100000 25 2 1 0.95 0.3 90000 1e-8 2000 NaN 0 1];
+% gbestval = 1;
+% % 
+% load data_6.mat
+% % 
+% data.t     = da.Ti.set3(32:53);
+% data.T     = da.tm.set3(32:53);
+% data.alpha = da.a.set3(32:53)-0.03;
+% data.HR = mean(diff(data.T)./diff(data.t));
+% % 
+% %% Calculate Polynomial Regression 
+% p = polyfit(data.T,data.alpha,4);
+% d = polyval(p,data.T);
+% dpoly=[p(1)*4, p(2)*3, p(3)*2, p(4)];
+% DTDXpoly1 = polyval(dpoly,data.T);
+% % 
+% % 
+% % 
+% %% First PSO call with 250 particles and no switch to ODE solver
+% % While loop loops until the gbestval hits 0.005
+% while gbestval > 0.003
+%     FitnessFunc_nonODE('init', data, DTDXpoly1, Bounds);
+%     
+%     %PSO that only outputs the particles 
+%     [particles,gbestval]=pso_Trelea_vectorized_nonODE('FitnessFunc_nonODE',6,...
+%             [3e4 4 3e4 4 3e4 4],Bounds,0,Pdef,'goplotpso_b');
 % 
-% % Variables for first pso run
-Pdef = [500 100000 250 2 1 0.95 0.3 90000 3e-3 2000 0.003 0 0];
-% 
-% % variables for second pso run
-Pdef2 = [500 100000 25 2 1 0.95 0.3 90000 1e-8 2000 NaN 0 1];
-gbestval = 1;
-% 
-load data_6.mat
-% 
-data.t     = da.Ti.set3(32:53);
-data.T     = da.tm.set3(32:53);
-data.alpha = da.a.set3(32:53)-0.03;
-data.HR = mean(diff(data.T)./diff(data.t));
-% 
-%% Calculate Polynomial Regression 
-p = polyfit(data.T,data.alpha,4);
-d = polyval(p,data.T);
-dpoly=[p(1)*4, p(2)*3, p(3)*2, p(4)];
-DTDXpoly1 = polyval(dpoly,data.T);
-% 
-% 
-% 
-%% First PSO call with 250 particles and no switch to ODE solver
-% While loop loops until the gbestval hits 0.005
-while gbestval > 0.003
-    FitnessFunc_nonODE('init', data, DTDXpoly1, Bounds);
-    
-    %PSO that only outputs the particles 
-    [particles,gbestval]=pso_Trelea_vectorized_nonODE('FitnessFunc_nonODE',6,...
-            [3e4 4 3e4 4 3e4 4],Bounds,0,Pdef,'goplotpso_b');
+%     FitnessFunc_nonODE('dest');
+%     clf
+% end
 
-    FitnessFunc_nonODE('dest');
-    clf
-end
-
-%load workspace_gb0-005.mat
+load workspace_gb0-005.mat
 
 %% Randomly choose particles from the 250
 % get randomly 25 out of the 250 particles at random without replacement
