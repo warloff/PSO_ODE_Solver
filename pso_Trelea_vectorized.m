@@ -603,9 +603,9 @@ try
             cnt2 = cnt2+1;
             if cnt2 >= ergrdep
                 if plotflg == 1
-                    fprintf(message,i,gbestval);
                     disp(' ');
-                    disp(['--> Solution likely, GBest hasn''t changed by at least ',...
+                    fprintf(message,i,gbestval);
+                    disp(['--> Solution likely, GBest with ODE hasn''t changed by at least ',...
                         num2str(ergrd),' for ',...
                         num2str(cnt2),' epochs.']);
                     eval(plotfcn);
@@ -619,9 +619,9 @@ try
             if ((gbestval<=errgoal) && (minmax==0)) || ((gbestval>=errgoal) && (minmax==1))
                 
                 if plotflg == 1
-                    fprintf(message,i,gbestval);
                     disp(' ');
-                    disp(['--> Error Goal reached, successful termination!']);
+                    fprintf(message,i,gbestval);
+                    disp(['--> Error Goal reached with ODE, successful termination!']);
                     
                     eval(plotfcn);
                 end
@@ -633,9 +633,9 @@ try
                 if ((tr(i)<errgoal) && (gbestval>=errgoal)) || ((tr(i)>errgoal) ...
                         && (gbestval <= errgoal))
                     if plotflg == 1
-                        fprintf(message,i,gbestval);
                         disp(' ');
-                        disp(['--> Error Goal reached, successful termination!']);
+                        fprintf(message,i,gbestval);
+                        disp(['--> Error Goal reached with ODE, successful termination!']);
                         
                         eval(plotfcn);
                     end
