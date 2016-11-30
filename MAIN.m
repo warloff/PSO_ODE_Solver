@@ -11,7 +11,7 @@ clc
 
 
 %Initialize empty array to be filled with runs
-hundredruns = [];
+second25 = [];
 
 
 %For loop runs the script 100 times and them keeps the runs
@@ -19,14 +19,14 @@ maintime=tic;
 delete(gcp('nocreate'))
 poolObj=parpool;
 
-for i = 1:100
-    hundredruns(i,:) = AdaptivePSO_wrapper; %Calls the function holding comparison script
-    %et2=toc(maintime);
-    %mymsg=['Trial Run time:',datestr(et2,'HH:MM:SS.FFF')];
-    %display(mymsg);
+for i = 1:25
+    second25(i,:) = AdaptivePSO_wrapper; %Calls the function holding comparison script
+    et2=toc(maintime);
+    mymsg=['Trial Run time:',datestr(et2,'HH:MM:SS.FFF')];
+    display(mymsg);
     clf
-    clearvars -EXCEPT hundredruns %poolObj maintime
+    clearvars -EXCEPT second25 poolObj maintime
 end
 
 delete(poolObj)
-save hundredruns
+save second25
